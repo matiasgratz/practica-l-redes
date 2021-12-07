@@ -28,3 +28,21 @@ canal(evelyn,instagram,1).
 
 
 % 2)
+% Sobre los influencers:
+% influencer/1 se cumple para un usuario que tiene más de 10.000 seguidores en total entre todas sus redes.
+influencer(Usuario):-
+    canal(Usuario,Red,Seguidores),
+    canal(Usuario,OtraRed,OtrosSeguidores),
+    Red \= OtraRed,
+    SeguidoresTotales is Seguidores + OtrosSeguidores,
+    SeguidoresTotales > 10000.
+
+influencer(Usuario):-
+    canal(Usuario,_,Seguidores),
+    Seguidores > 10000.
+
+% En los usuarios de ejemplo, dani, ana y beto son influencers.
+% omnipresente/1 se cumple para un influencer si está en cada red que existe (se consideran como existentes aquellas redes en las que hay al menos un usuario).
+% Por ejemplo, ana es omnipresente.
+% exclusivo/1 se cumple cuando un influencer está en una única red.
+% Por ejemplo, dani es exclusivo.
